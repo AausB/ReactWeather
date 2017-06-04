@@ -15,7 +15,10 @@ const React = require('react');
 // simpler but only for components without state
 const About = (props) => {
   return(
-    <h3>About Component (stateless functional component)</h3>
+    <div>
+      <h3>About</h3>
+      <p>Welcome to the About page</p>
+    </div>
   );
 };
 
