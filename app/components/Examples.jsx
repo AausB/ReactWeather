@@ -13,7 +13,7 @@ const React = require('react');
 const Examples = (props) => {
   return(
     <div className='examples component'>
-      <h3>Examples stateless functional component!</h3>
+      <h3>Examples</h3>
       <p>Welcome to examples page</p>
     </div>
   );
