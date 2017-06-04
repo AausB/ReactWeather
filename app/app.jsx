@@ -14,6 +14,11 @@ const {About} = require('About');
 const {Examples} = require('Examples');
 const {NotFound} = require('NotFound');
 
+// load foundation-sites with the style loader and css loader
+// 'style-loader!css-loader!foundation-sites/dist/css/foundation.min.css'
+require('style-loader!css-loader!foundation-sites/dist/css/foundation.min.css');
+$(document).foundation();
+
 ReactDOM.render(
   // a jsx element with the name of the React Class from above
   //<Greeter name={firstName} message={message}/>,
