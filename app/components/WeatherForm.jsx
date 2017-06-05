@@ -37,7 +37,7 @@ class WeatherForm extends React.Component {
       <form onSubmit={this.onFormSubmit}>
         {/* ref is a React built-in attribute */}
         <div><input type="text" ref="location" placeholder="Enter city name"/></div>
-        <div><button>Get Weather</button></div>
+        <div><button className="button expanded hollow">Get Weather</button></div>
       </form>
     );
   }

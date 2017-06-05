@@ -23,8 +23,8 @@ const React = require('react');
 // right inside the function parameters! Wow!
 const WeatherMessage = ({location, temperature}) => {
   return(
-    <div className='weather-message component'>
-      <h3>It is {temperature} °C in {location}</h3>
+    <div>
+      <h3 className="text-center">It is {temperature} °C in {location}</h3>
     </div>
   );
 };
