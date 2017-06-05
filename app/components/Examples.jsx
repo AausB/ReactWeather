@@ -1,4 +1,5 @@
 const React = require('react');
+const {Link} = require('react-router-dom');
 
 // class Examples extends React.Component {
 //   render() {
@@ -12,9 +13,17 @@ const React = require('react');
 
 const Examples = (props) => {
   return(
-    <div className='examples component'>
-      <h3>Examples</h3>
-      <p>Welcome to examples page</p>
+    <div>
+      <h1 className="text-center">Examples</h1>
+      <p>Here are a few example locations to try out</p>
+      <ol>
+        <li>
+          <Link to='/?location=Berlin'>Berlin</Link>
+        </li>
+        <li>
+          <Link to='/?location=Rio'>Rio, Brazil</Link>
+        </li>
+      </ol>
     </div>
   );
 }
