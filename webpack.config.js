@@ -42,7 +42,8 @@ module.exports = {
       Examples: path.resolve(__dirname, 'app/components/Examples.jsx'),
       ErrorModal: path.resolve(__dirname, 'app/components/ErrorModal.jsx'),
       openWeatherMap: path.resolve(__dirname, 'app/api/openWeatherMap.jsx'),
-      NotFound: path.resolve(__dirname, 'app/components/NotFound.jsx')
+      NotFound: path.resolve(__dirname, 'app/components/NotFound.jsx'),
+      applicationStyles: path.resolve(__dirname, 'app/styles/app.css')
     },
     // this is webpack 1 where an '' string could be defined
     // extensions: ['', '.js', '.jsx']
