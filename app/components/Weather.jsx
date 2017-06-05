@@ -1,8 +1,8 @@
 const React = require('react');
 const {WeatherForm} = require('WeatherForm');
 const {WeatherMessage} = require('WeatherMessage');
+const {ErrorModal} = require('ErrorModal');
 const openWeatherMap = require('openWeatherMap');
-
 
 // container component
 // - maintains the state: location and temperature
@@ -13,12 +13,16 @@ class Weather extends React.Component {
       // init state
       this.state = {
         isLoading: false,
+        errorMessage: undefined
       };
   }
 
   handleSearch = (location) => {
 
-    this.setState({isLoading: true});
+    this.setState({
+      isLoading: true,
+      errorMessage: undefined
+    });
 
     openWeatherMap.getTemp(location).then((temperature) => {
       this.setState({
@@ -27,17 +31,17 @@ class Weather extends React.Component {
         isLoading: false
       });
     }).
-    catch((errorMessage) => {
+    catch((error) => {
       this.setState({
-        isLoading: false
+        isLoading: false,
+        errorMessage: error.message
       });
-      alert(errorMessage);
     });
   };
 
   render() {
     // set local variables with ES6 object destructuring
-    let {isLoading, location, temperature} = this.state;
+    let {isLoading, location, temperature, errorMessage} = this.state;
 
     const renderMessage = () => {
       if (isLoading) {
@@ -52,11 +56,20 @@ class Weather extends React.Component {
       }
     };
 
+    const renderError = () => {
+      if (typeof errorMessage === 'string') {
+        return(
+          <ErrorModal message={errorMessage}/>
+        );
+      }
+    }
+
     return(
       <div className='weather component'>
         <h1 className="text-center">Get Weather</h1>
         <WeatherForm onSearch={this.handleSearch}/>
         {renderMessage()}
+        {renderError()}
       </div>
     );
   }
