@@ -20,7 +20,7 @@ require('style-loader!css-loader!foundation-sites/dist/css/foundation.min.css');
 $(document).foundation();
 
 // add custom styles to all pages
-require('style-loader!css-loader!applicationStyles');
+require('style-loader!css-loader!sass-loader!applicationStyles');
 
 ReactDOM.render(
   // a jsx element with the name of the React Class from above
