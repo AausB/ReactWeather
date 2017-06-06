@@ -3,6 +3,7 @@ const {WeatherForm} = require('WeatherForm');
 const {WeatherMessage} = require('WeatherMessage');
 const {ErrorModal} = require('ErrorModal');
 const openWeatherMap = require('openWeatherMap');
+const queryString = require('query-string');
 
 // container component
 // - maintains the state: location and temperature
@@ -13,15 +14,21 @@ class Weather extends React.Component {
       // init state
       this.state = {
         isLoading: false,
-        errorMessage: undefined
+        errorMessage: undefined,
+        location: undefined,
+        temperature: undefined
       };
   }
 
   handleSearch = (location) => {
 
+    // reset state data before doing openWeatherMap call
+    // to prevent unexpected results
     this.setState({
       isLoading: true,
-      errorMessage: undefined
+      errorMessage: undefined,
+      location: undefined,
+      temperature: undefined
     });
 
     openWeatherMap.getTemp(location).then((temperature) => {
@@ -38,6 +45,35 @@ class Weather extends React.Component {
       });
     });
   };
+
+  componentDidMount = () => {
+    // get the location from search string
+    let parsed = queryString.parse(location.search);
+
+    if (parsed.location && parsed.location.length > 0) {
+      this.handleSearch(parsed.location);
+
+      // remove the search string from URL: reset to home
+      window.history.pushState({}, document.title, window.location.pathname)
+    }
+  }
+
+  componentWillReceiveProps = (newProps) => {
+    /*
+      Hmm. This is from the tutorial. But it works without it.
+      For more information about componentWillReceiveProps
+      https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops
+     */
+    // // get the location from search string
+    // let parsed = queryString.parse(location.search);
+    //
+    // if (parsed.location && parsed.location.length > 0) {
+    //   this.handleSearch(parsed.location);
+    //
+    //   // remove the search string from URL: reset to home
+    //   window.history.pushState({}, document.title, window.location.pathname)
+    // }
+  }
 
   render() {
     // set local variables with ES6 object destructuring
